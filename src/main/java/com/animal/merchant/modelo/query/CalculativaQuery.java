@@ -1,12 +1,12 @@
-package Modelo.GestoresQuery;
+package com.animal.merchant.modelo.query;
 
-import Excepciones.NumeroNoValidoException;
-import Modelo.ContenedorDatos;
-import Procesamiento.ProcesadorNumeroRomano;
-import Utilidades.Logger;
+
+import com.animal.merchant.excepciones.NumeroNoValidoException;
+import com.animal.merchant.modelo.ContenedorDatos;
+import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
+import com.animal.merchant.utilidades.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CalculativaQuery implements IGestorQuery {
@@ -17,18 +17,17 @@ public class CalculativaQuery implements IGestorQuery {
         //glob glob Silver is 34 Credits
 
         //split por "is"
-        List<String> lstPrincipal = Utilidades.Utils.DescomponerTexto(" is ",query);
+        List<String> lstPrincipal = Utils.DescomponerTexto(" is ", query);
 
         //obtener del [0] los n-1
-        List<String> lstIzquierda = Utilidades.Utils.DescomponerTexto(" ",lstPrincipal.get(0));
+        List<String> lstIzquierda = Utils.DescomponerTexto(" ", lstPrincipal.get(0));
 
-        String metal = lstIzquierda.get(lstIzquierda.size()-1);
+        String metal = lstIzquierda.get(lstIzquierda.size() - 1);
 
         List<String> lstPalabrasExtraterrestres = new ArrayList<String>();
 
         //obtenemos solo los nomrbres exterrestres
-        for(int i=0;i<lstIzquierda.size()-1;i++)
-        {
+        for (int i = 0; i < lstIzquierda.size() - 1; i++) {
             lstPalabrasExtraterrestres.add(lstIzquierda.get(i));
         }
 
@@ -39,23 +38,22 @@ public class CalculativaQuery implements IGestorQuery {
         int nroDecimal = ProcesadorNumeroRomano.obtenerInstancia().convertirRomanoADecimal(nroRomano);
         //hacer funcion de devolucion del Valor del metal
 
-        int nroCreditos =Integer.parseInt( Utilidades.Utils.DescomponerTexto(" " ,lstPrincipal.get(1)).get(0));
-        double valorMetal = ObtenerValorMetal(nroCreditos,nroDecimal);
+        int nroCreditos = Integer.parseInt(Utils.DescomponerTexto(" ", lstPrincipal.get(1)).get(0));
+        double valorMetal = ObtenerValorMetal(nroCreditos, nroDecimal);
 
         //guardar el metal con su valor
-        ContenedorDatos.obtenerInstancia().AnadirValorMetal(metal,valorMetal);
+        ContenedorDatos.obtenerInstancia().AnadirValorMetal(metal, valorMetal);
 
 
         return res;
     }
 
     private Double ObtenerValorMetal(int nroCreditos, int nroDecimal) {
-        return (((double)nroCreditos)/((double) nroDecimal));
+        return (((double) nroCreditos) / ((double) nroDecimal));
     }
 
 
-    private String ObtenerNumeroRomanoDePalabrasExtraterrestres(List<String> lstPalabrasExtraterrestres)
-    {
+    private String ObtenerNumeroRomanoDePalabrasExtraterrestres(List<String> lstPalabrasExtraterrestres) {
         return ProcesadorNumeroRomano.obtenerInstancia().obtenerNumeroRomanoDePalabrasExtraterrestres(lstPalabrasExtraterrestres);
     }
 

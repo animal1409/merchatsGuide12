@@ -1,15 +1,16 @@
-package Modelo.GestoresQuery;
+package com.animal.merchant.modelo.query;
 
-import Excepciones.NumeroNoValidoException;
-import Modelo.ContenedorDatos;
-import Procesamiento.ProcesadorNumeroRomano;
-import Utilidades.Logger;
-import Utilidades.Utils;
+
+import com.animal.merchant.excepciones.NumeroNoValidoException;
+import com.animal.merchant.modelo.ContenedorDatos;
+import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
+import com.animal.merchant.utilidades.Utils;
+import lombok.extern.slf4j.Slf4j;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class CrediticiaQuery implements IGestorQuery {
     @Override
     public String gestionarQuery(String query) throws NumeroNoValidoException {
@@ -27,22 +28,20 @@ public class CrediticiaQuery implements IGestorQuery {
         List<String> lstExtraTerrestresRomanos = lstPalabrasExtraterretres.subList(0, lstPalabrasExtraterretres.size() - 1);
 
         ProcesadorNumeroRomano proc = ProcesadorNumeroRomano.obtenerInstancia();
-        String nroRomano  = proc.obtenerNumeroRomanoDePalabrasExtraterrestres(lstExtraTerrestresRomanos);
+        String nroRomano = proc.obtenerNumeroRomanoDePalabrasExtraterrestres(lstExtraTerrestresRomanos);
         int nroDecimal = proc.convertirRomanoADecimal(nroRomano);
-        res = ConstruirRespuesta(textoPregunta,nroDecimal,valorMetal);
+        res = ConstruirRespuesta(textoPregunta, nroDecimal, valorMetal);
         return res;
 
     }
 
-    private String ConstruirRespuesta(String entrada, int nroDecimal, double valorMetal)
-    {
+    private String ConstruirRespuesta(String entrada, int nroDecimal, double valorMetal) {
 
-        Logger.getLogger().Log("nroDecimal: "+nroDecimal);
-        Logger.getLogger().Log("valorMetal "+valorMetal);
-        double Valor = ((double)nroDecimal)*valorMetal;
+        log.info("nroDecimal: " + nroDecimal);
+        log.info("valorMetal " + valorMetal);
+        double Valor = ((double) nroDecimal) * valorMetal;
         String strValor = new DecimalFormat("#").format(Valor);
-        String respuesta = entrada+ " is "+ strValor + " Credits";
-        return respuesta;
+        return entrada + " is " + strValor + " Credits";
     }
 
     @Override

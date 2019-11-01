@@ -1,15 +1,13 @@
-package Modelo.GestoresQuery;
+package com.animal.merchant.modelo.query;
 
-import Modelo.TipoQuery;
+import com.animal.merchant.modelo.TipoQuery;
 
 public class FactoryGestorQuery {
 
-    public IGestorQuery obtenerGestorQuery(TipoQuery tipoQuery)
-    {
+    public IGestorQuery obtenerGestorQuery(TipoQuery tipoQuery) {
 
         IGestorQuery res = null;
-        switch (tipoQuery)
-        {
+        switch (tipoQuery) {
 
             case Declarativa:
                 res = new DeclarativaQuery();

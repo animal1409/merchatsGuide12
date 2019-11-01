@@ -1,6 +1,6 @@
-package Modelo.GestoresQuery;
+package com.animal.merchant.modelo.query;
 
-import Excepciones.NumeroNoValidoException;
+import com.animal.merchant.excepciones.NumeroNoValidoException;
 
 public class NoValidaQuery implements IGestorQuery {
     @Override
