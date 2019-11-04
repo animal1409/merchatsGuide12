@@ -49,10 +49,8 @@ public class Aplicacion {
         System.out.println("Ingreso de las siguientes lines de texto");
 
         lstEntradas.forEach(e->System.out.println(e));
-
         procesadorAplicacion.ingresarEntradas(lstEntradas);
         procesadorAplicacion.procesarEntradas();
-
         List<String> lstSalidasResultados = procesadorAplicacion.obtenerSalida();
 
         System.out.println("Produce la siguiente salida");
