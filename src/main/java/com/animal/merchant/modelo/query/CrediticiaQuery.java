@@ -33,9 +33,26 @@ public class CrediticiaQuery implements IGestorQuery {
         List<String> lstPalabrasExtraterretres = Utils.DescomponerTexto(" ", textoPregunta);
         //el ultimo es el Metal
         String nombreMetal = lstPalabrasExtraterretres.get(lstPalabrasExtraterretres.size() - 1);
+
+        List<String> lstExtraTerrestresRomanos = lstPalabrasExtraterretres.subList(0, lstPalabrasExtraterretres.size() - 1);
+
+
+
+        if (!ContenedorDatos.obtenerInstancia().palabrasExtraterrestresDefinidas(lstExtraTerrestresRomanos))
+        {
+            return "Existen palabras extraterrestres no definidas previamente";
+        }
+
+        if(!ContenedorDatos.obtenerInstancia().nombreMetalDefinido(nombreMetal))
+        {
+            return "El metal ingresado no ha podido ser calculado";
+        }
+
         //obtener el valor del Metal
         double valorMetal = ContenedorDatos.obtenerInstancia().getDicValorMetal().get(nombreMetal);
-        List<String> lstExtraTerrestresRomanos = lstPalabrasExtraterretres.subList(0, lstPalabrasExtraterretres.size() - 1);
+
+
+
 
         ProcesadorNumeroRomano proc = ProcesadorNumeroRomano.obtenerInstancia();
         String nroRomano = proc.obtenerNumeroRomanoDePalabrasExtraterrestres(lstExtraTerrestresRomanos);
@@ -54,8 +71,7 @@ public class CrediticiaQuery implements IGestorQuery {
      */
     private String construirRespuesta(String entrada, int nroDecimal, double valorMetal) {
 
-        log.info("nroDecimal: " + nroDecimal);
-        log.info("valorMetal " + valorMetal);
+
         double Valor = ((double) nroDecimal) * valorMetal;
         String strValor = new DecimalFormat("#").format(Valor);
         return entrada + " is " + strValor + " Credits";

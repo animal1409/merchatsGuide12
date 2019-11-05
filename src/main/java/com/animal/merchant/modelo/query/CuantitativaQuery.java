@@ -2,6 +2,7 @@ package com.animal.merchant.modelo.query;
 
 
 import com.animal.merchant.excepciones.NumeroNoValidoException;
+import com.animal.merchant.modelo.ContenedorDatos;
 import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import com.animal.merchant.utilidades.Utils;
 
@@ -28,6 +29,11 @@ public class CuantitativaQuery implements IGestorQuery {
 
         String palabraPedidoExtraterrestre = Utils.DescomponerTexto(" is ", query).get(1);
         List<String> lstExtrarrestre = Utils.DescomponerTexto(" ", palabraPedidoExtraterrestre);
+        if(!ContenedorDatos.obtenerInstancia().palabrasExtraterrestresDefinidas(lstExtrarrestre))
+        {
+            return "Existen palabras extraterrestres no definidas previamente";
+        }
+
         ProcesadorNumeroRomano proc = ProcesadorNumeroRomano.obtenerInstancia();
         String nroRomano = proc.obtenerNumeroRomanoDePalabrasExtraterrestres(lstExtrarrestre);
         int nroDecimal = proc.convertirRomanoADecimal(nroRomano);

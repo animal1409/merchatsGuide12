@@ -44,9 +44,8 @@ public class CalculativaQuery implements IGestorQuery {
         }
 
 
-        if (!palabrasExtraterrestresDefinidas(lstPalabrasExtraterrestres))
+        if (!ContenedorDatos.obtenerInstancia().palabrasExtraterrestresDefinidas(lstPalabrasExtraterrestres))
         {
-            Utils.PrintText("Ha Ingresado en que no existen las palabras extraterrestres");
             this.devuelveRespuesta = true;
             return "Existen palabras extraterrestres no definidas previamente";
         }
@@ -68,27 +67,6 @@ public class CalculativaQuery implements IGestorQuery {
         return res;
     }
 
-    /**
-     * Define devuelve true si todas las palabras extraterrestres estan definidas
-     * @param lstPalabrasExtraterrestres
-     * @return
-     */
-    private boolean palabrasExtraterrestresDefinidas(List<String> lstPalabrasExtraterrestres) {
-
-        boolean respuesta = true;
-
-        Utils.PrintText("ha ingresado en la funcion de texto");
-
-        for (String p : lstPalabrasExtraterrestres) {
-            if (!ContenedorDatos.obtenerInstancia().getDicExtraterresteNumeroRomano().containsKey(p)) {
-                Utils.PrintText("No ha encontrado la palabra "+p);
-                return false;
-            }
-        }
-
-
-        return respuesta;
-    }
 
 
     private Double ObtenerValorMetal(int nroCreditos, int nroDecimal) {

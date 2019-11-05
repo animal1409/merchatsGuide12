@@ -125,7 +125,7 @@ public class ProcesamientoAplicacionTest {
     }
 
     @Test
-    public void ProbarEntradasOrdenNoValido()
+    public void ProbarEntradasOrdenNoValidoCalculativa()
     {
 
         ContenedorDatos.resetearDatos();
@@ -175,6 +175,164 @@ public class ProcesamientoAplicacionTest {
 
     }
 
+
+    @Test
+    public void ProbarEntradasOrdenNoValidoCuatitativa()
+    {
+
+        ContenedorDatos.resetearDatos();
+        ProcesadorAplicacion.resetearProcesoAplicacion();
+
+        //region ConfiguracionInicial
+
+
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+
+        List<ConfiguracionQuery> lstConfQuery = new ArrayList<ConfiguracionQuery>();
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Declarativa, "^([A-Za-z]+) is ([I|V|X|L|C|D|M])$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Calculativa, "(.*) is ([0-9]+) ([c|C]redits)$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Crediticia, "^how many [C|c]redits is .*?$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Cuantitativa, "^how much is .*?$"));
+
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.configurarQueries(lstConfQuery);
+
+
+
+
+        //endregion ConfiguracionInicial
+
+        List<String> lstEntradas = new ArrayList<String>();
+        lstEntradas.add("how much is pish tegj glob glob ?");
+        lstEntradas.add("glob is I");
+
+
+        procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.ingresarEntradas(lstEntradas);
+        procesadorAplicacion.procesarEntradas();
+
+        List<String> lstSalidasResultados = procesadorAplicacion.obtenerSalida();
+
+        List<String> lstSalidasDefinidas = new ArrayList<String>();
+        lstSalidasDefinidas.add("Existen palabras extraterrestres no definidas previamente");
+        Assert.assertEquals(lstSalidasDefinidas, lstSalidasResultados);
+
+    }
+
+
+
+    @Test
+    public void ProbarEntradasOrdenNoValidoCrediticiaPalabras()
+    {
+
+        ContenedorDatos.resetearDatos();
+        ProcesadorAplicacion.resetearProcesoAplicacion();
+
+        //region ConfiguracionInicial
+
+
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+
+        List<ConfiguracionQuery> lstConfQuery = new ArrayList<ConfiguracionQuery>();
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Declarativa, "^([A-Za-z]+) is ([I|V|X|L|C|D|M])$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Calculativa, "(.*) is ([0-9]+) ([c|C]redits)$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Crediticia, "^how many [C|c]redits is .*?$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Cuantitativa, "^how much is .*?$"));
+
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.configurarQueries(lstConfQuery);
+
+
+
+
+        //endregion ConfiguracionInicial
+
+        List<String> lstEntradas = new ArrayList<String>();
+        lstEntradas.add("how many Credits is glob prok Silver ?");
+        lstEntradas.add("glob is I");
+
+
+        procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.ingresarEntradas(lstEntradas);
+        procesadorAplicacion.procesarEntradas();
+
+        List<String> lstSalidasResultados = procesadorAplicacion.obtenerSalida();
+
+        List<String> lstSalidasDefinidas = new ArrayList<String>();
+        lstSalidasDefinidas.add("Existen palabras extraterrestres no definidas previamente");
+        Assert.assertEquals(lstSalidasDefinidas, lstSalidasResultados);
+
+    }
+
+
+    @Test
+    public void ProbarEntradasOrdenNoValidoCrediticiaMetal()
+    {
+
+        ContenedorDatos.resetearDatos();
+        ProcesadorAplicacion.resetearProcesoAplicacion();
+
+        //region ConfiguracionInicial
+
+
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+
+        List<ConfiguracionQuery> lstConfQuery = new ArrayList<ConfiguracionQuery>();
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Declarativa, "^([A-Za-z]+) is ([I|V|X|L|C|D|M])$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Calculativa, "(.*) is ([0-9]+) ([c|C]redits)$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Crediticia, "^how many [C|c]redits is .*?$"));
+        lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Cuantitativa, "^how much is .*?$"));
+
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.configurarQueries(lstConfQuery);
+
+
+
+
+        //endregion ConfiguracionInicial
+
+        List<String> lstEntradas = new ArrayList<String>();
+        lstEntradas.add("glob is I");
+        lstEntradas.add("prok is V");
+        lstEntradas.add("how many Credits is glob prok Silver ?");
+
+
+
+        procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.ingresarEntradas(lstEntradas);
+        procesadorAplicacion.procesarEntradas();
+
+        List<String> lstSalidasResultados = procesadorAplicacion.obtenerSalida();
+
+        List<String> lstSalidasDefinidas = new ArrayList<String>();
+        lstSalidasDefinidas.add("El metal ingresado no ha podido ser calculado");
+        Assert.assertEquals(lstSalidasDefinidas, lstSalidasResultados);
+
+    }
 
 
 }

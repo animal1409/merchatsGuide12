@@ -3,6 +3,7 @@ package com.animal.merchant.modelo;
 import lombok.Data;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Clase encargada de devolver y almacenar los datos mientras la aplicación está en ejecución
@@ -67,5 +68,41 @@ public class ContenedorDatos {
      */
     public HashMap<String, Double> getDicValorMetal() {
         return dicValorMetal;
+    }
+
+
+
+    /**
+     * Define devuelve true si todas las palabras extraterrestres estan definidas
+     * @param lstPalabrasExtraterrestres
+     * @return
+     */
+    public boolean palabrasExtraterrestresDefinidas(List<String> lstPalabrasExtraterrestres) {
+
+        boolean respuesta = true;
+
+
+        for (String p : lstPalabrasExtraterrestres) {
+            if (!ContenedorDatos.obtenerInstancia().getDicExtraterresteNumeroRomano().containsKey(p)) {
+                return false;
+            }
+        }
+
+
+        return respuesta;
+    }
+
+    /**
+     * Obtiene el dato si existe el metal definido
+     * @param nombreMetal
+     * @return
+     */
+    public boolean nombreMetalDefinido(String nombreMetal) {
+        boolean respuesta = true;
+        if(!ContenedorDatos.obtenerInstancia().getDicValorMetal().containsKey(nombreMetal))
+        {
+            return false;
+        }
+        return respuesta;
     }
 }
