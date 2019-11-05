@@ -38,13 +38,6 @@ public class ProcesadorNumeroRomano {
      */
     public void ConfigurarRomanos(List<NumeroRomano> lstNumeroRomano) {
 
-//        this.lstNumeroRomano.add(new NumeroRomano('I', 1));
-//        this.lstNumeroRomano.add(new NumeroRomano('V', 5));
-//        this.lstNumeroRomano.add(new NumeroRomano('X', 10));
-//        this.lstNumeroRomano.add(new NumeroRomano('L', 50));
-//        this.lstNumeroRomano.add(new NumeroRomano('C', 100));
-//        this.lstNumeroRomano.add(new NumeroRomano('D', 500));
-//        this.lstNumeroRomano.add(new NumeroRomano('M', 1000));
         this.lstNumeroRomano = lstNumeroRomano;
     }
 
