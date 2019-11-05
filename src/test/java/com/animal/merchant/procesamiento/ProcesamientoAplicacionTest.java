@@ -4,6 +4,7 @@ import com.animal.merchant.modelo.ConfiguracionQuery;
 import com.animal.merchant.modelo.NumeroRomano;
 import com.animal.merchant.modelo.TipoQuery;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,14 +12,11 @@ import java.util.List;
 
 public class ProcesamientoAplicacionTest {
 
+@Before
+    public  void ConfigurarAplicacion()
+    {
 
-
-
-    /**
-     * Simulacion aplicacion
-     */
-    @Test
-    public void ProbarProcesoAplicacion() {
+        //region ConfiguracionInicial
 
 
         List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
@@ -30,9 +28,6 @@ public class ProcesamientoAplicacionTest {
         lstNumeroRomano.add(new NumeroRomano('D', 500));
         lstNumeroRomano.add(new NumeroRomano('M', 1000));
         ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
-
-
-        //region ConfiguracionInicial
 
         List<ConfiguracionQuery> lstConfQuery = new ArrayList<ConfiguracionQuery>();
         lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Declarativa, "^([A-Za-z]+) is ([I|V|X|L|C|D|M])$"));
@@ -47,6 +42,20 @@ public class ProcesamientoAplicacionTest {
 
 
         //endregion ConfiguracionInicial
+    }
+
+
+    /**
+     * Simulacion aplicacion
+     */
+    @Test
+    public void ProbarProcesoAplicacion() {
+
+
+
+
+
+
 
         //region ConfigurarEntradaDatos
         List<String> lstEntradas = new ArrayList<String>();
@@ -65,7 +74,7 @@ public class ProcesamientoAplicacionTest {
         lstEntradas.add("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?");
         //endregion ConfigurarEntradaDatos
 
-
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
         procesadorAplicacion.ingresarEntradas(lstEntradas);
         procesadorAplicacion.procesarEntradas();
 
@@ -85,5 +94,9 @@ public class ProcesamientoAplicacionTest {
 
 
     }
+
+
+
+
 
 }
