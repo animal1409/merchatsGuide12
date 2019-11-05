@@ -1,8 +1,10 @@
 package com.animal.merchant.aplicacion;
 
 import com.animal.merchant.modelo.ConfiguracionQuery;
+import com.animal.merchant.modelo.NumeroRomano;
 import com.animal.merchant.modelo.TipoQuery;
 import com.animal.merchant.procesamiento.ProcesadorAplicacion;
+import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,20 @@ public class Aplicacion {
     private static void EjecutarProcesamiento()
     {
         //region ConfiguracionInicial
+
+
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+
+
+
         List<ConfiguracionQuery> lstConfQuery = new ArrayList<ConfiguracionQuery>();
         lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Declarativa, "^([A-Za-z]+) is ([I|V|X|L|C|D|M])$"));
         lstConfQuery.add(new ConfiguracionQuery(TipoQuery.Calculativa, "(.*) is ([0-9]+) ([c|C]redits)$"));

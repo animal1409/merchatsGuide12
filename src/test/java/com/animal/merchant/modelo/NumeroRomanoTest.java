@@ -3,13 +3,34 @@ package com.animal.merchant.modelo;
 import com.animal.merchant.excepciones.NumeroNoValidoException;
 import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NumeroRomanoTest {
 
 
+    @Before
+    public void ConfigurarRomano()
+    {
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+    }
+
+
     @Test
     public void ProbarRomanos() throws NumeroNoValidoException {
+
+
         int numDecimalI = ProcesadorNumeroRomano.obtenerInstancia().convertirRomanoADecimal("I");
         Assert.assertEquals(1, numDecimalI);
         int numDecimalV = ProcesadorNumeroRomano.obtenerInstancia().convertirRomanoADecimal("V");

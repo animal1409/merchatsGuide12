@@ -1,6 +1,7 @@
 package com.animal.merchant.procesamiento;
 
 import com.animal.merchant.modelo.ConfiguracionQuery;
+import com.animal.merchant.modelo.NumeroRomano;
 import com.animal.merchant.modelo.TipoQuery;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,11 +12,24 @@ import java.util.List;
 public class ProcesamientoAplicacionTest {
 
 
+
+
     /**
      * Simulacion aplicacion
      */
     @Test
     public void ProbarProcesoAplicacion() {
+
+
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
 
 
         //region ConfiguracionInicial
@@ -28,6 +42,9 @@ public class ProcesamientoAplicacionTest {
 
         ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
         procesadorAplicacion.configurarQueries(lstConfQuery);
+
+
+
 
         //endregion ConfiguracionInicial
 

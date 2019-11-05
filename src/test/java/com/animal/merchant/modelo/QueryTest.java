@@ -3,6 +3,7 @@ package com.animal.merchant.modelo;
 import com.animal.merchant.excepciones.NumeroNoValidoException;
 import com.animal.merchant.modelo.query.FactoryGestorQuery;
 import com.animal.merchant.modelo.query.IGestorQuery;
+import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import com.animal.merchant.procesamiento.ProcesadorQuery;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,8 +17,24 @@ public class QueryTest {
     private static List<ConfiguracionQuery> lstConfiguracionQuery;
 
 
+
+
     @Before
     public void ConfigurarTester() {
+
+        //region ConfiguracionNumeroRomano
+        List<NumeroRomano> lstNumeroRomano = new ArrayList<NumeroRomano>();
+        lstNumeroRomano.add(new NumeroRomano('I', 1));
+        lstNumeroRomano.add(new NumeroRomano('V', 5));
+        lstNumeroRomano.add(new NumeroRomano('X', 10));
+        lstNumeroRomano.add(new NumeroRomano('L', 50));
+        lstNumeroRomano.add(new NumeroRomano('C', 100));
+        lstNumeroRomano.add(new NumeroRomano('D', 500));
+        lstNumeroRomano.add(new NumeroRomano('M', 1000));
+        ProcesadorNumeroRomano.obtenerInstancia().ConfigurarRomanos(lstNumeroRomano);
+
+
+        //endregion ConfiguracionNumeroRomano
 
         //region ConfiguracionTipoQuery
         lstConfiguracionQuery = new ArrayList<ConfiguracionQuery>();
