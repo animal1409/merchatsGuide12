@@ -9,15 +9,22 @@ import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase de ejecución de la aplicación
+ */
 public class Aplicacion {
 
     public static void main(String[] args)
     {
-        EjecutarProcesamiento();
+        configurarAplicacion();
+        ejecutarProcesamiento();
     }
 
 
-    private static void EjecutarProcesamiento()
+    /**
+     * Configura la aplicacion
+     */
+    private static void configurarAplicacion()
     {
         //region ConfiguracionInicial
 
@@ -44,7 +51,15 @@ public class Aplicacion {
         procesadorAplicacion.configurarQueries(lstConfQuery);
 
         //endregion ConfiguracionInicial
+    }
 
+
+    /**
+     * Método que realiza la ejecución del aplicativo
+     */
+    private static void ejecutarProcesamiento()
+    {
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
 
         //region ConfigurarEntradaDatos
         List<String> lstEntradas = new ArrayList<String>();
@@ -71,7 +86,6 @@ public class Aplicacion {
 
         System.out.println("Produce la siguiente salida");
         lstSalidasResultados.forEach(r->System.out.println(r));
-
 
     }
 

@@ -47,8 +47,8 @@ public class ProcesadorQuery {
 
     }
 
-    private void getNoValida() {
-    }
+    //private void getNoValida() {
+    //}
 
     private void getTipoQuery(ConfiguracionQuery configuracionQuery) {
     }

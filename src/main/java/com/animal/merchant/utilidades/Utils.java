@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Utilidades
+ */
 public class Utils {
     /**
      * Conversion de string a char array
@@ -51,15 +54,29 @@ public class Utils {
         return lstTextoSeparado;
     }
 
-
+    /**
+     * Remueve espacios a los lados
+     * @param texto
+     * @return
+     */
     private static String RemoverEspaciosLados(String texto) {
         return trimEnd(trimStart(texto));
     }
 
+    /**
+     * Remueve espacios al final
+     * @param value
+     * @return
+     */
     public static String trimEnd(String value) {
         return value.replaceFirst("\\s+$", "");
     }
 
+    /**
+     * Remueve espacio al inicio
+     * @param value
+     * @return
+     */
     public static String trimStart(String value) {
         return value.replaceFirst("^\\s+", "");
     }

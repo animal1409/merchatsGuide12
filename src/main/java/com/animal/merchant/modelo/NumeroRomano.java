@@ -4,6 +4,9 @@ import com.animal.merchant.excepciones.NumeroNoValidoException;
 import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import lombok.Data;
 
+/**
+ * Clase de Numero Romano
+ */
 @Data
 public class NumeroRomano {
     private char signo;

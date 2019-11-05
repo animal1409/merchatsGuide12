@@ -9,8 +9,16 @@ import com.animal.merchant.utilidades.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementacion de tipo de query calculativa
+ */
 public class CalculativaQuery implements IGestorQuery {
-
+    /**
+     * Gestiona el tipo de query calculativa
+     * @param query entrada
+     * @return salida
+     * @throws NumeroNoValidoException
+     */
     @Override
     public String gestionarQuery(String query) throws NumeroNoValidoException {
         String res = "";
@@ -32,7 +40,7 @@ public class CalculativaQuery implements IGestorQuery {
         }
 
         //pediro en el hashmap los caracteres de romano
-        String nroRomano = ObtenerNumeroRomanoDePalabrasExtraterrestres(lstPalabrasExtraterrestres);
+        String nroRomano = obtenerNumeroRomanoDePalabrasExtraterrestres(lstPalabrasExtraterrestres);
         //concatenar y pedir el numero en ProcesadorNumeroRomano
 
         int nroDecimal = ProcesadorNumeroRomano.obtenerInstancia().convertirRomanoADecimal(nroRomano);
@@ -52,12 +60,19 @@ public class CalculativaQuery implements IGestorQuery {
         return (((double) nroCreditos) / ((double) nroDecimal));
     }
 
-
-    private String ObtenerNumeroRomanoDePalabrasExtraterrestres(List<String> lstPalabrasExtraterrestres) {
+    /**
+     * Obtiene el número romano dada una lista de palabras extraterrestres
+     * @param lstPalabrasExtraterrestres
+     * @return
+     */
+    private String obtenerNumeroRomanoDePalabrasExtraterrestres(List<String> lstPalabrasExtraterrestres) {
         return ProcesadorNumeroRomano.obtenerInstancia().obtenerNumeroRomanoDePalabrasExtraterrestres(lstPalabrasExtraterrestres);
     }
 
-
+    /**
+     * Indica si devuelveSalida de datos
+     * @return
+     */
     @Override
     public boolean devuelveOutput() {
         return false;

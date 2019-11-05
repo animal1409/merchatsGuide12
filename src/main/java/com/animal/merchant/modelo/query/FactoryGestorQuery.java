@@ -2,8 +2,16 @@ package com.animal.merchant.modelo.query;
 
 import com.animal.merchant.modelo.TipoQuery;
 
+/**
+ * Devuelve el tipo de IGestonQuery en base al tipo de query obtenido
+ */
 public class FactoryGestorQuery {
 
+    /**
+     * Obtiene la instancia según el tipo de query proporcionado
+     * @param tipoQuery
+     * @return
+     */
     public IGestorQuery obtenerGestorQuery(TipoQuery tipoQuery) {
 
         IGestorQuery res = null;

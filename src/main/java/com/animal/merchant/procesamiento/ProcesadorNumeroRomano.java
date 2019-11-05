@@ -11,16 +11,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-
+/**
+ * Procesa los numeros romanos
+ */
 @Slf4j
 public class ProcesadorNumeroRomano {
 
     private static ProcesadorNumeroRomano procesadorNumeroRomano;
     private List<NumeroRomano> lstNumeroRomano = null;
 
-    /**
-     * Construtcor
-     */
+
     private ProcesadorNumeroRomano() {
         this.lstNumeroRomano = new ArrayList<NumeroRomano>();
         //ConfigurarRomanos();

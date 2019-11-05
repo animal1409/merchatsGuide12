@@ -1,5 +1,11 @@
 package com.animal.merchant.excepciones;
 
+
+
+/**
+ * Excepcion de Número no válido
+ */
+
 public class NumeroNoValidoException extends Exception {
 
     private String descripcion;

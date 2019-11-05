@@ -10,8 +10,18 @@ import lombok.extern.slf4j.Slf4j;
 import java.text.DecimalFormat;
 import java.util.List;
 
+/**
+ * Realiza el proceso de tipo de query crediticio
+ */
 @Slf4j
 public class CrediticiaQuery implements IGestorQuery {
+
+    /**
+     * gestiona el tipo de query crediticio
+     * @param query entrada
+     * @return
+     * @throws NumeroNoValidoException
+     */
     @Override
     public String gestionarQuery(String query) throws NumeroNoValidoException {
 
@@ -30,12 +40,19 @@ public class CrediticiaQuery implements IGestorQuery {
         ProcesadorNumeroRomano proc = ProcesadorNumeroRomano.obtenerInstancia();
         String nroRomano = proc.obtenerNumeroRomanoDePalabrasExtraterrestres(lstExtraTerrestresRomanos);
         int nroDecimal = proc.convertirRomanoADecimal(nroRomano);
-        res = ConstruirRespuesta(textoPregunta, nroDecimal, valorMetal);
+        res = construirRespuesta(textoPregunta, nroDecimal, valorMetal);
         return res;
 
     }
 
-    private String ConstruirRespuesta(String entrada, int nroDecimal, double valorMetal) {
+    /**
+     * Hace el cálculo para este tipo de query, obteniendo la salida que debe proporcionar dicha entrada
+     * @param entrada
+     * @param nroDecimal
+     * @param valorMetal
+     * @return
+     */
+    private String construirRespuesta(String entrada, int nroDecimal, double valorMetal) {
 
         log.info("nroDecimal: " + nroDecimal);
         log.info("valorMetal " + valorMetal);
@@ -44,6 +61,10 @@ public class CrediticiaQuery implements IGestorQuery {
         return entrada + " is " + strValor + " Credits";
     }
 
+    /**
+     * indica si devuelve salida de datos
+     * @return
+     */
     @Override
     public boolean devuelveOutput() {
         return true;

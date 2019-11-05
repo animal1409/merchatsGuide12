@@ -9,7 +9,16 @@ import java.util.List;
 
 //import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+/**
+ * Realiza el procesamiento del tipo de query cuantitativo
+ */
 public class CuantitativaQuery implements IGestorQuery {
+    /**
+     * Gestiona el tipo de query cuantitativo
+     * @param query entrada
+     * @return
+     * @throws NumeroNoValidoException
+     */
     @Override
     public String gestionarQuery(String query) throws NumeroNoValidoException {
         //how much is pish tegj glob glob ?
@@ -25,10 +34,20 @@ public class CuantitativaQuery implements IGestorQuery {
         return construirRespuesta(palabraPedidoExtraterrestre, nroDecimal);
     }
 
+    /**
+     * contruye la respuesta que debe devolver para este tipo de query
+     * @param palabraPedidoExtraterrestre
+     * @param nroDecimal
+     * @return
+     */
     private String construirRespuesta(String palabraPedidoExtraterrestre, int nroDecimal) {
         return palabraPedidoExtraterrestre + " is " + nroDecimal;
     }
 
+    /**
+     * Indica si este query devulve una salida
+     * @return
+     */
     @Override
     public boolean devuelveOutput() {
         return true;

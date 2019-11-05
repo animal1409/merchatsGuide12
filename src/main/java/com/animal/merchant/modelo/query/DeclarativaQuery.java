@@ -5,9 +5,12 @@ import com.animal.merchant.utilidades.Utils;
 
 import java.util.List;
 
+/**
+ * Realiza el procesamiento del tipo de query declarativa
+ */
 public class DeclarativaQuery implements IGestorQuery {
     /**
-     * Gestion el query para el tipo de query declarativa
+     * Gestiona el tipo de query declarativo
      *
      * @return
      */
@@ -20,7 +23,10 @@ public class DeclarativaQuery implements IGestorQuery {
         return res;
     }
 
-
+    /**
+     * indica si devuelve salida de datos
+     * @return
+     */
     @Override
     public boolean devuelveOutput() {
         return false;
