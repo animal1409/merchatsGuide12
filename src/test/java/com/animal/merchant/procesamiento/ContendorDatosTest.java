@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ContendorDatosTest {
     @Test
     public void ProbarContenedorDatos() {
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
         ContenedorDatos contenedorDatos = ContenedorDatos.obtenerInstancia();
 
         //debe iniciar el I y luego reeamplazar el II

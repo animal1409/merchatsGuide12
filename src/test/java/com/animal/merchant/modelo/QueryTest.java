@@ -78,7 +78,7 @@ public class QueryTest {
 
     @Test
     public void ProbarDeclarativeQuery() throws NumeroNoValidoException {
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
         ProcesadorQuery procQuery = ProcesadorQuery.obtenerInstancia();
         procQuery.ConfigurarTipoQuery(lstConfiguracionQuery);
         TipoQuery tipoQuery = ProcesadorQuery.obtenerInstancia().obtenerTipoQuery("glob is I");
@@ -106,7 +106,7 @@ public class QueryTest {
 
 
         //encerar datos
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
 
         //configugrar el procesador de queries
         ProcesadorQuery procQuery = ProcesadorQuery.obtenerInstancia();
@@ -151,7 +151,7 @@ public class QueryTest {
         //region PasosPrevios
 
         //encerar datos
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
 
         //configugrar el procesador de queries
         ProcesadorQuery procQuery = ProcesadorQuery.obtenerInstancia();
@@ -190,7 +190,7 @@ public class QueryTest {
         //region PasosPrevios
 
         //encerar datos
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
 
         //configugrar el procesador de queries
         ProcesadorQuery procQuery = ProcesadorQuery.obtenerInstancia();
@@ -239,7 +239,7 @@ public class QueryTest {
         //region PasosPrevios
 
         //encerar datos
-        ContenedorDatos.ResetearDatos();
+        ContenedorDatos.resetearDatos();
 
         //configugrar el procesador de queries
         ProcesadorQuery procQuery = ProcesadorQuery.obtenerInstancia();

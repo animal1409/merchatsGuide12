@@ -6,13 +6,17 @@ import com.animal.merchant.modelo.ContenedorDatos;
 import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
 import com.animal.merchant.utilidades.Utils;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Implementacion de tipo de query calculativa
  */
 public class CalculativaQuery implements IGestorQuery {
+
+    private boolean devuelveRespuesta =false;
     /**
      * Gestiona el tipo de query calculativa
      * @param query entrada
@@ -39,6 +43,14 @@ public class CalculativaQuery implements IGestorQuery {
             lstPalabrasExtraterrestres.add(lstIzquierda.get(i));
         }
 
+
+        if (!palabrasExtraterrestresDefinidas(lstPalabrasExtraterrestres))
+        {
+            Utils.PrintText("Ha Ingresado en que no existen las palabras extraterrestres");
+            this.devuelveRespuesta = true;
+            return "Existen palabras extraterrestres no definidas previamente";
+        }
+
         //pediro en el hashmap los caracteres de romano
         String nroRomano = obtenerNumeroRomanoDePalabrasExtraterrestres(lstPalabrasExtraterrestres);
         //concatenar y pedir el numero en ProcesadorNumeroRomano
@@ -55,6 +67,29 @@ public class CalculativaQuery implements IGestorQuery {
 
         return res;
     }
+
+    /**
+     * Define devuelve true si todas las palabras extraterrestres estan definidas
+     * @param lstPalabrasExtraterrestres
+     * @return
+     */
+    private boolean palabrasExtraterrestresDefinidas(List<String> lstPalabrasExtraterrestres) {
+
+        boolean respuesta = true;
+
+        Utils.PrintText("ha ingresado en la funcion de texto");
+
+        for (String p : lstPalabrasExtraterrestres) {
+            if (!ContenedorDatos.obtenerInstancia().getDicExtraterresteNumeroRomano().containsKey(p)) {
+                Utils.PrintText("No ha encontrado la palabra "+p);
+                return false;
+            }
+        }
+
+
+        return respuesta;
+    }
+
 
     private Double ObtenerValorMetal(int nroCreditos, int nroDecimal) {
         return (((double) nroCreditos) / ((double) nroDecimal));
@@ -75,6 +110,6 @@ public class CalculativaQuery implements IGestorQuery {
      */
     @Override
     public boolean devuelveOutput() {
-        return false;
+        return this.devuelveRespuesta;
     }
 }

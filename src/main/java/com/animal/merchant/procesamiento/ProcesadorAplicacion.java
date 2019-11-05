@@ -27,7 +27,7 @@ public class ProcesadorAplicacion {
 
     public static ProcesadorAplicacion obtenerInstancia() {
         if (procesadorAplicacion == null) {
-            ContenedorDatos.ResetearDatos();
+            ContenedorDatos.resetearDatos();
             procesadorAplicacion = new ProcesadorAplicacion();
             procesadorAplicacion.lstSalidas = new ArrayList<String>();
         }
@@ -74,8 +74,8 @@ public class ProcesadorAplicacion {
             procesadorQuery.ConfigurarTipoQuery(this.lstConfiguracionQuery);
             TipoQuery tipoQuery = procesadorQuery.obtenerTipoQuery(query);
             IGestorQuery gestorQuery = new FactoryGestorQuery().obtenerGestorQuery(tipoQuery);
-            boolean esOutput = gestorQuery.devuelveOutput();
             String respuesta = gestorQuery.gestionarQuery(query);
+            boolean esOutput = gestorQuery.devuelveOutput();
             if (esOutput) {
                 this.lstSalidas.add(respuesta);
             }
@@ -95,5 +95,12 @@ public class ProcesadorAplicacion {
         return this.lstSalidas;
     }
 
+    /**
+     * Resetea el proceso del aplicativo
+     */
+    public static void resetearProcesoAplicacion()
+    {
+        procesadorAplicacion = null;
+    }
 
 }

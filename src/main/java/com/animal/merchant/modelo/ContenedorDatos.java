@@ -30,7 +30,7 @@ public class ContenedorDatos {
     /**
      * Resetea los datos guardados
      */
-    public static void ResetearDatos() {
+    public static void resetearDatos() {
         contendorDatos = null;
     }
 

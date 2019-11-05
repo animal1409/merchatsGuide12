@@ -81,5 +81,14 @@ public class Utils {
         return value.replaceFirst("^\\s+", "");
     }
 
+    /**
+     * Imprime el texto
+     * @param texto
+     */
+    public static void PrintText(Object texto)
+    {
+        System.out.println(texto);
+
+    }
 
 }
