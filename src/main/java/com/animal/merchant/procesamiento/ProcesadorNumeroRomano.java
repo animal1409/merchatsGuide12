@@ -116,12 +116,7 @@ public class ProcesadorNumeroRomano {
         StringBuilder sb = new StringBuilder();
         lstPalabrasExtraterrestres.forEach(x -> {
             sb.append(extNroRomano.get(x));
-
-            log.info(x);
         });
-
-        log.info("La union de palabras extraterrestres");
-        log.info(sb.toString());
         return sb.toString();
     }
 

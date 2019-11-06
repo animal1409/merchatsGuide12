@@ -5,9 +5,11 @@ import com.animal.merchant.modelo.NumeroRomano;
 import com.animal.merchant.modelo.TipoQuery;
 import com.animal.merchant.procesamiento.ProcesadorAplicacion;
 import com.animal.merchant.procesamiento.ProcesadorNumeroRomano;
+import picocli.CommandLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Clase de ejecución de la aplicación
@@ -16,9 +18,13 @@ public class Aplicacion {
 
     public static void main(String[] args)
     {
+
         configurarAplicacion();
-        ejecutarProcesamiento();
+       //ejecutarProcesamiento();
+        ejecutarConsolaEntradas();
     }
+
+
 
 
     /**
@@ -54,6 +60,45 @@ public class Aplicacion {
     }
 
 
+
+    private static void ejecutarConsolaEntradas()
+    {
+        String palabraTerminoEntrada = "TERMINAR";
+        imprimirLinea("A continuación ingrese las entradas:");
+        imprimirLinea("Indique si ya terminó el ingreso de consultas con la palabra "+palabraTerminoEntrada);
+
+
+
+        List<String> listaEntradas = new ArrayList<String>();
+        String consolaIn = "";
+            while(!consolaIn.trim().equals(palabraTerminoEntrada))
+            {
+                consolaIn = recibirLinea();
+                if(!consolaIn.equals(palabraTerminoEntrada)) {
+                    listaEntradas.add(consolaIn);
+                    imprimirLinea("se ha ingresado la consulta -> " + consolaIn);
+                }
+                if(consolaIn.equals(palabraTerminoEntrada))
+                    break;
+            }
+
+        imprimirLinea("Se ha ingresado las siguientes consultas:");
+
+         listaEntradas.forEach(l->{imprimirLinea(l);});
+
+        ProcesadorAplicacion procesadorAplicacion = ProcesadorAplicacion.obtenerInstancia();
+        procesadorAplicacion.ingresarEntradas(listaEntradas);
+        procesadorAplicacion.procesarEntradas();
+        List<String> lstSalidasResultados = procesadorAplicacion.obtenerSalida();
+
+        imprimirLinea("Produce la siguiente salida");
+
+        lstSalidasResultados.forEach(l->{ imprimirLinea(l);});
+
+
+
+    }
+
     /**
      * Método que realiza la ejecución del aplicativo
      */
@@ -88,5 +133,18 @@ public class Aplicacion {
         lstSalidasResultados.forEach(r->System.out.println(r));
 
     }
+
+    private static void imprimirLinea(String linea)
+    {
+            System.out.println(linea);
+    }
+
+    private static String recibirLinea()
+    {
+        Scanner scanner = new Scanner(System. in);
+        String inputString = scanner. nextLine();
+        return inputString;
+    }
+
 
 }
