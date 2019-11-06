@@ -89,7 +89,7 @@ public class Utils {
      */
     public static void PrintText(Object texto)
     {
-        System.out.println(texto);
+        //System.out.println(texto);
 
     }
 
